@@ -74,7 +74,7 @@ export default function SignupForm() {
                         )}
                     />
                     <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
+                        <div className="col-span-12 md:col-span-6">
                             <FormField
                                 control={form.control}
                                 name="phoneNo"
@@ -91,7 +91,7 @@ export default function SignupForm() {
                             />
                         </div>
 
-                        <div className="col-span-6">
+                        <div className="col-span-12 md:col-span-6">
                             <FormField
                                 control={form.control}
                                 name="email"
@@ -125,7 +125,7 @@ export default function SignupForm() {
                     />
 
                     <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
+                        <div className="col-span-12 md:col-span-6">
                             <FormField
                                 control={form.control}
                                 name="area"
@@ -142,7 +142,7 @@ export default function SignupForm() {
                             />
                         </div>
 
-                        <div className="col-span-6">
+                        <div className="col-span-12 md:col-span-6">
                             <FormField
                                 control={form.control}
                                 name="city"

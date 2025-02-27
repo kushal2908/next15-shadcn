@@ -24,15 +24,15 @@ export default function Navbar({}: Props) {
         };
     }, []);
     return (
-        <div className={`fixed z-1 w-[100vw] transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : ''}`}>
-            <div className="flex items-center justify-between h-[60px] container mx-auto ">
+        <div className={`fixed z-1 w-[100vw] transition-all duration-300 ${scrolled ? 'bg-black shadow-md' : ''} z-99`}>
+            <div className="flex items-center justify-between h-[60px] container ml-4 mr-4 md:mx-auto ">
                 <div>
                     <Link href="/">
-                        <p className="font-black text-gray-800 text-2xl">LOGO</p>
+                        <p className={`font-black text-white text-2xl`}>LOGO</p>
                     </Link>
                 </div>
-                <div className="flex items-center gap-4 ">
-                    <NavMenuItems />
+                <div className="flex items-center gap-4">
+                    <NavMenuItems scrolled={scrolled} />
                 </div>
                 <div className="flex items-center gap-4 ">
                     <AuthButtons />
@@ -55,7 +55,10 @@ export function AuthButtons() {
     );
 }
 
-export function NavMenuItems() {
+type NavMenuItemsProps = {
+    scrolled: boolean;
+};
+export function NavMenuItems({ scrolled }: NavMenuItemsProps) {
     const menu = [
         {
             name: 'Home',
@@ -73,7 +76,13 @@ export function NavMenuItems() {
     return (
         <>
             {menu?.map((d: any) => (
-                <Link href={d.url} key={d?.name} className="font-bold text-gray-800 hover:text-gray-600 hover:cursor-pointer">
+                <Link
+                    href={d.url}
+                    key={d?.name}
+                    className={`font-bold
+                       text-white
+                      hover:cursor-pointer`}
+                >
                     <p>{d.name}</p>
                 </Link>
             ))}
