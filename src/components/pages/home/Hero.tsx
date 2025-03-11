@@ -17,7 +17,7 @@ export default function Hero() {
                         {img?.map((d: any) => (
                             <div className="embla__slide" key={d}>
                                 <img src={d} alt="image" className="h-[600px] w-full object-cover" />
-                                <div className="absolute inset-0 bg-gradient-to-r from-gray-800 opacity-100"></div>
+                                <div className="absolute inset-0 bg-gradient-to-r from-gray-800 to-gray-800 opacity-30"></div>
                             </div>
                         ))}
                     </div>
