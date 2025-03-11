@@ -1,0 +1,10 @@
+.heroContainer {
+    height: 600px;
+
+}
+
+.sliderImage {
+    height: 600px;
+    object-fit: cover;
+
+}

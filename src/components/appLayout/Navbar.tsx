@@ -24,11 +24,11 @@ export default function Navbar({}: Props) {
         };
     }, []);
     return (
-        <div className={`fixed z-1 w-[100vw] transition-all duration-300 ${scrolled ? 'bg-black shadow-md' : ''} z-99`}>
+        <div className={`fixed z-1 w-[100dvw] transition-all duration-300  ${scrolled ? 'bg-zinc-700 shadow-md' : 'bg-transparent'} z-99`}>
             <div className="flex items-center justify-between h-[60px] container ml-4 mr-4 md:mx-auto ">
                 <div>
                     <Link href="/">
-                        <p className={`font-black text-white text-2xl`}>LOGO</p>
+                        <p className={`font-black  ${scrolled ? 'text-white' : ''}  text-2xl`}>LOGO</p>
                     </Link>
                 </div>
                 <div className="flex items-center gap-4">
@@ -80,7 +80,7 @@ export function NavMenuItems({ scrolled }: NavMenuItemsProps) {
                     href={d.url}
                     key={d?.name}
                     className={`font-bold
-                       text-white
+                    ${scrolled ? 'text-white' : 'text-zinc-600 hover:text-black'}                       
                       hover:cursor-pointer`}
                 >
                     <p>{d.name}</p>
