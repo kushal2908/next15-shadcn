@@ -3,9 +3,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { Button } from '../ui/button';
 
-type Props = {};
-
-export default function Navbar({}: Props) {
+export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
