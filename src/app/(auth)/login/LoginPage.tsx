@@ -8,37 +8,36 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
-type Props = {};
 
-const formSchema = (step: 'phone' | 'otp') =>
+type FormValues = {
+    email: string;
+    password: string;
+};
+const formSchema = (step: 'email' | 'password') =>
     z.object({
-        phoneNo:
-            step === 'phone' ? z.string().min(11, { message: 'Invalid phone no' }).max(14, { message: 'Invalid phone no' }) : z.string(), // No validation needed in OTP step
-        otp: step === 'otp' ? z.string().min(4, { message: 'Invalid OTP' }).max(4, { message: 'Invalid OTP' }) : z.string(), // No validation needed in Phone step
+        email: step === 'email' ? z.string().email({ message: 'Invalid email address' }) : z.string(),
+        password: step === 'password' ? z.string({ message: 'Invalid password ' }) : z.string(),
     });
 
-export default function LoginPage({}: Props) {
-    const [step, setStep] = useState<'phone' | 'otp'>('phone');
+export default function LoginPage() {
+    const [step, setStep] = useState<'email' | 'password'>('email');
+    console.log(step);
 
     const form = useForm({
         resolver: zodResolver(formSchema(step)),
         defaultValues: {
-            phoneNo: '',
-            otp: '',
+            email: '',
+            password: '',
         },
     });
 
-    function onPhoneNoSubmit(values: any) {
-        try {
-            toast.success('Phone no submitted');
-            // form.reset();
-            setStep('otp');
-        } catch (error) {
-            console.error('Form submission error', error);
-            toast.error('Failed to submit the form. Please try again.');
+    function onEmailSubmit(values: FormValues) {
+        if (!values.email) {
+            return toast.error('Please enter your email address');
         }
+        setStep('password');
     }
-    function onOTPSubmit(values: any) {
+    function onPasswordSubmit(values: FormValues) {
         try {
             toast.success('Success');
             // form.reset();
@@ -51,18 +50,18 @@ export default function LoginPage({}: Props) {
     return (
         <Form {...form}>
             <form
-                onSubmit={form.handleSubmit(step === 'phone' ? onPhoneNoSubmit : onOTPSubmit)}
+                onSubmit={form.handleSubmit(step === 'email' ? onEmailSubmit : onPasswordSubmit)}
                 className="space-y-4 max-w-3xl mx-auto py-0"
             >
-                {step === 'phone' && (
+                {step === 'email' && (
                     <FormField
                         control={form.control}
-                        name="phoneNo"
+                        name="email"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Phone No</FormLabel>
+                                <FormLabel>Email</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Enter your phone number" type="text" {...field} />
+                                    <Input placeholder="Enter your email" type="text" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -70,15 +69,15 @@ export default function LoginPage({}: Props) {
                     />
                 )}
 
-                {step === 'otp' && (
+                {step === 'password' && (
                     <FormField
                         control={form.control}
-                        name="otp"
+                        name="password"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Enter OTP</FormLabel>
+                                <FormLabel>Password</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Enter 4 digit otp" type="text" {...field} />
+                                    <Input placeholder="Enter your password" type="password" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -94,7 +93,7 @@ export default function LoginPage({}: Props) {
                     </p>
                 </div>
                 <Button type="submit" className="w-full">
-                    {step === 'phone' ? 'Get OTP' : 'Login'}
+                    {step === 'email' ? 'Start' : 'Login'}
                 </Button>
             </form>
         </Form>

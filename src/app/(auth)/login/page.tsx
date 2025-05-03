@@ -2,9 +2,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { motion } from 'framer-motion';
 import LoginPage from './LoginPage';
-type Props = {};
 
-export default function page({}: Props) {
+export default function page() {
     const cardVariants = {
         hidden: { opacity: 0, y: 20 }, // Start off-screen (below)
         visible: {

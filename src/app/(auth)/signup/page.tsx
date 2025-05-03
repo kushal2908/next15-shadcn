@@ -17,13 +17,13 @@ export default function SignUp({}: Props) {
     return (
         <>
             <motion.div
-                className="flex items-center justify-center min-h-[100vh] bg-gray-100 "
+                className="flex items-center justify-center min-h-[100vh] bg-gray-100  "
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
             >
                 <motion.div variants={cardVariants} className="my-14">
-                    <Card className="min-w-[300px]">
+                    <Card className="min-w-[300px] mt-8">
                         <CardHeader>
                             <CardTitle className="text-3xl font-bold text-gray-700">Signup</CardTitle>
                             <CardDescription className="text-gray-800 text-sm font-medium">

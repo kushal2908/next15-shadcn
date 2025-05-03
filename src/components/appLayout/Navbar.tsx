@@ -22,15 +22,15 @@ export default function Navbar() {
         };
     }, []);
     return (
-        <div className={`fixed z-1 w-[100dvw] transition-all duration-300  ${scrolled ? 'bg-zinc-700 shadow-md' : 'bg-transparent'} z-99`}>
-            <div className="flex items-center justify-between h-[60px] container ml-4 mr-4 md:mx-auto ">
+        <div className={`fixed z-1 w-[100dvw] transition-all duration-300 text-white ${scrolled ? 'bg-black shadow-md' : 'bg-black'} z-99`}>
+            <div className="appContainer flex items-center justify-between h-[60px]">
                 <div>
                     <Link href="/">
-                        <p className={`font-black  ${scrolled ? 'text-white' : ''}  text-2xl`}>LOGO</p>
+                        <p className={`font-black text-2xl`}>LOGO</p>
                     </Link>
                 </div>
                 <div className="flex items-center gap-4">
-                    <NavMenuItems scrolled={scrolled} />
+                    <NavMenuItems />
                 </div>
                 <div className="flex items-center gap-4 ">
                     <AuthButtons />
@@ -43,20 +43,14 @@ export default function Navbar() {
 export function AuthButtons() {
     return (
         <>
-            <Link href="/login">
-                <Button variant="outline">Login</Button>
-            </Link>
             <Link href="/signup">
-                <Button>Signup</Button>
+                <Button>Get Started</Button>
             </Link>
         </>
     );
 }
 
-type NavMenuItemsProps = {
-    scrolled: boolean;
-};
-export function NavMenuItems({ scrolled }: NavMenuItemsProps) {
+export function NavMenuItems() {
     const menu = [
         {
             name: 'Home',
@@ -74,13 +68,7 @@ export function NavMenuItems({ scrolled }: NavMenuItemsProps) {
     return (
         <>
             {menu?.map((d: any) => (
-                <Link
-                    href={d.url}
-                    key={d?.name}
-                    className={`font-bold
-                    ${scrolled ? 'text-white' : 'text-zinc-600 hover:text-black'}                       
-                      hover:cursor-pointer`}
-                >
+                <Link href={d.url} key={d?.name} className={`font-bold text-white hover:cursor-pointer`}>
                     <p>{d.name}</p>
                 </Link>
             ))}
