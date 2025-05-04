@@ -4,64 +4,71 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
+import { loginUser } from './action';
 
 type FormValues = {
-    email: string;
+    username: string;
     password: string;
 };
-const formSchema = (step: 'email' | 'password') =>
+const formSchema = (step: 'username' | 'password') =>
     z.object({
-        email: step === 'email' ? z.string().email({ message: 'Invalid email address' }) : z.string(),
+        username: step === 'username' ? z.string({ message: 'Invalid username address' }) : z.string(),
         password: step === 'password' ? z.string({ message: 'Invalid password ' }) : z.string(),
     });
 
 export default function LoginPage() {
-    const [step, setStep] = useState<'email' | 'password'>('email');
-    console.log(step);
+    const [step, setStep] = useState<'username' | 'password'>('username');
+    const router = useRouter();
 
     const form = useForm({
         resolver: zodResolver(formSchema(step)),
         defaultValues: {
-            email: '',
+            username: '',
             password: '',
         },
     });
 
-    function onEmailSubmit(values: FormValues) {
-        if (!values.email) {
-            return toast.error('Please enter your email address');
+    function onusernameSubmit(values: FormValues) {
+        if (!values.username) {
+            return toast.error('Please enter your username address');
         }
         setStep('password');
     }
-    function onPasswordSubmit(values: FormValues) {
+    async function onPasswordSubmit(values: FormValues) {
         try {
-            toast.success('Success');
-            // form.reset();
-        } catch (error) {
-            console.error('Form submission error', error);
-            toast.error('Failed to submit the form. Please try again.');
+            const data = await loginUser(values);
+            delete data.accessToken;
+            delete data.refreshToken;
+            localStorage.setItem('user-info', JSON.stringify(data));
+            toast.success('Login Success');
+            form.reset();
+            router.push('/');
+        } catch (error: any) {
+            console.error('Form submission error', error?.response?.data?.message);
+            toast.error(error?.response?.data?.message || 'Failed to submit the form. Please try again.');
         }
     }
 
     return (
         <Form {...form}>
             <form
-                onSubmit={form.handleSubmit(step === 'email' ? onEmailSubmit : onPasswordSubmit)}
+                onSubmit={form.handleSubmit(step === 'username' ? onusernameSubmit : onPasswordSubmit)}
                 className="space-y-4 max-w-3xl mx-auto py-0"
             >
-                {step === 'email' && (
+                {step === 'username' && (
                     <FormField
                         control={form.control}
-                        name="email"
+                        name="username"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Email</FormLabel>
+                                <FormLabel>Username</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Enter your email" type="text" {...field} />
+                                    <Input placeholder="Enter your username" type="text" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -93,7 +100,7 @@ export default function LoginPage() {
                     </p>
                 </div>
                 <Button type="submit" className="w-full">
-                    {step === 'email' ? 'Start' : 'Login'}
+                    {step === 'username' ? 'Start' : 'Login'}
                 </Button>
             </form>
         </Form>

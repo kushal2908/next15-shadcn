@@ -27,6 +27,8 @@ export default function page() {
                             <LoginPage />
                         </CardContent>
                     </Card>
+                    <span className="text-[11px] mr-2">emilys</span>
+                    <span className="text-[11px]">emilyspass</span>
                 </motion.div>
             </motion.div>
         </div>
