@@ -1,8 +1,5 @@
 import Navbar from './Navbar';
-
-type Props = {};
-
-export default function AppLayout({}: Props) {
+export default function AppLayout() {
     return (
         <div>
             <Navbar />

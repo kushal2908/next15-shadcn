@@ -3,9 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import SignupForm from './SignupForm';
 import { motion } from 'framer-motion';
 
-type Props = {};
-
-export default function SignUp({}: Props) {
+export default function SignUp() {
     const cardVariants = {
         hidden: { opacity: 0, y: 20 }, // Start off-screen (below)
         visible: {

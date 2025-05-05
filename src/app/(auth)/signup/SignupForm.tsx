@@ -5,11 +5,10 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { zodResolver } from '@hookform/resolvers/zod';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
 const formSchema = z.object({
     name: z.string().min(4, {
         message: 'Name must be at least 4 characters.',
@@ -45,7 +44,7 @@ export default function SignupForm() {
         },
     });
 
-    function onSubmit(values: any) {
+    function onSubmit() {
         try {
             toast.success('Submitted');
             // form.reset();

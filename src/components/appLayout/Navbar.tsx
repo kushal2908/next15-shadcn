@@ -1,19 +1,12 @@
 'use client';
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-import { Button } from '../ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useAuth } from '@/hooks/useAuth';
 import { deleteCookie } from 'cookies-next/client';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { useEffect, useState } from 'react';
+import { Button } from '../ui/button';
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
