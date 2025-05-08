@@ -154,5 +154,5 @@
 }
 
 .appContainer {
-  @apply max-w-[1100px] mx-auto
+  @apply px-4 md:max-w-[1100px] mx-auto
 }

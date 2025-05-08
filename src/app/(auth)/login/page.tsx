@@ -16,7 +16,7 @@ export default function page() {
         <div>
             <motion.div className="flex items-center justify-center h-[100vh] bg-gray-100" initial="hidden" animate="visible" exit="hidden">
                 <motion.div variants={cardVariants} className="my-14">
-                    <Card className="min-w-[300px]">
+                    <Card className="max-w-[310px]">
                         <CardHeader>
                             <CardTitle className="text-3xl font-bold text-gray-700">login</CardTitle>
                             <CardDescription className="text-gray-800 text-sm font-medium">
@@ -27,8 +27,10 @@ export default function page() {
                             <LoginPage />
                         </CardContent>
                     </Card>
-                    <span className="text-[11px] mr-2">emilys</span>
-                    <span className="text-[11px]">emilyspass</span>
+                    <div className="text-[11px] text-center">
+                        <p>emilys</p>
+                        <p>emilyspass</p>
+                    </div>
                 </motion.div>
             </motion.div>
         </div>

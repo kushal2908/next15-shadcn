@@ -24,7 +24,6 @@ const formSchema = (step: 'username' | 'password') =>
 export default function LoginPage() {
     const [step, setStep] = useState<'username' | 'password'>('username');
     const router = useRouter();
-
     const form = useForm({
         resolver: zodResolver(formSchema(step)),
         defaultValues: {
@@ -33,7 +32,7 @@ export default function LoginPage() {
         },
     });
 
-    function onusernameSubmit(values: FormValues) {
+    function onUsernameSubmit(values: FormValues) {
         if (!values.username) {
             return toast.error('Please enter your username address');
         }
@@ -57,7 +56,7 @@ export default function LoginPage() {
     return (
         <Form {...form}>
             <form
-                onSubmit={form.handleSubmit(step === 'username' ? onusernameSubmit : onPasswordSubmit)}
+                onSubmit={form.handleSubmit(step === 'username' ? onUsernameSubmit : onPasswordSubmit)}
                 className="space-y-4 max-w-3xl mx-auto py-0"
             >
                 {step === 'username' && (

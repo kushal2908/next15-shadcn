@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Button } from '../ui/button';
+import { File, Group, LogOut, User } from 'lucide-react';
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
@@ -51,17 +52,27 @@ export default function Navbar() {
                 <div className="flex items-center gap-4 ">
                     {isAuth ? (
                         <DropdownMenu>
-                            <DropdownMenuTrigger>
+                            <DropdownMenuTrigger className="focus:outline-none">
                                 <Avatar className="cursor-pointer hover:ring-4 hover:ring-primary/60">
                                     <AvatarImage src={userInfo?.image} />
                                     <AvatarFallback>CN</AvatarFallback>
                                 </Avatar>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent className="bg-black text-white border-white/10">
-                                <DropdownMenuItem>Profile</DropdownMenuItem>
-                                <DropdownMenuItem>Billing</DropdownMenuItem>
-                                <DropdownMenuItem>Team</DropdownMenuItem>
-                                <DropdownMenuItem className="text-destructive" onClick={handleLogout}>
+                            <DropdownMenuContent className="bg-black text-white border-white/10 mt-3">
+                                <DropdownMenuItem>
+                                    <User className="text-white mr-2" /> Profile
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <File className="text-white mr-2" /> Billing
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <Group className="text-white mr-2" /> Team
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                    className="text-destructive font-semibold border-t border-gray-800"
+                                    onClick={handleLogout}
+                                >
+                                    <LogOut className="text-destructive mr-2" />
                                     Logout
                                 </DropdownMenuItem>
                             </DropdownMenuContent>

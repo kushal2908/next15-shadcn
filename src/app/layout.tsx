@@ -21,7 +21,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${geistSans.variable} antialiased`}>
-                <AppLayout /> <main className="minh-[100vh]">{children}</main>
+                <AppLayout /> <main className="minh-[100vh] pt-[60px]">{children}</main>
                 <Toaster position="bottom-center" richColors closeButton />
             </body>
         </html>

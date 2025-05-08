@@ -4,7 +4,12 @@ const nextConfig: NextConfig = {
     /* config options here */
     output: 'standalone',
     images: {
-        domains: ['images.unsplash.com', 'plus.unsplash.com', 'www.example.com'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: '**',
+            },
+        ],
     },
 };
 
