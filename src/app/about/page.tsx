@@ -1,9 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 
-type Props = {};
-
-export default function page({}: Props) {
+export default function page() {
     return (
         <section>
             <div className="bg-white min-h-[300px] flex justify-center items-center ">
